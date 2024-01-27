@@ -2,40 +2,90 @@
   <div class="col-md-4 offset-md-4">
     <div class="card">
       <div class="card-body">
-
         <div class="text-center">
           <h2>Criação de Usuário</h2>
           <p>Entre com os seus dados para criar uma conta.</p>
         </div>
 
-        <form>
+
+        <div class="m-2 text-success text-center" *ngIf="mensagemSucesso">
+          <strong>{{mensagemSucesso}}</strong>
+        </div>
+
+
+        <div class="m-2 text-danger text-center" *ngIf="mensagemErro">
+          {{mensagemErro}}
+        </div>
+
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label>Nome do usuário:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" formControlName="nome" />
+            <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+              <div *ngIf="f['nome'].errors['required']">
+                Por favor, informe o seu nome.
+              </div>
+              <div *ngIf="f['nome'].errors['minlength']">
+                Por favor, informe o nome com pelo menos 8 caracteres.
+              </div>
+              <div *ngIf="f['nome'].errors['maxlength']">
+                Por favor, informe o nome com no máximo 100 caracteres.
+              </div>
+            </div>
           </div>
+
 
           <div class="mb-3">
             <label>Email de acesso:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" formControlName="email" />
+            <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+              <div *ngIf="f['email'].errors['required']">
+                Por favor, informe o seu email.
+              </div>
+              <div *ngIf="f['email'].errors['email']">
+                Por favor, informe um endereço de email válido.
+              </div>
+            </div>
           </div>
+
 
           <div class="mb-3">
             <label>Senha de acesso:</label>
-            <input type="password" class="form-control" />
+            <input type="password" class="form-control" formControlName="senha" />
+            <div class="text-danger" *ngIf="f['senha'].touched && f['senha'].invalid">
+              <div *ngIf="f['senha'].errors['required']">
+                Por favor, informe a sua senha.
+              </div>
+              <div *ngIf="f['senha'].errors['pattern']">
+                A senha fornecida não atende aos requisitos mínimos de
+                segurança. Certifique-se de criar uma senha com pelo menos 8
+                caracteres, incluindo pelo menos uma letra maiúscula, uma letra
+                minúscula, um número e um caractere especial.
+              </div>
+            </div>
           </div>
+
 
           <div class="mb-3">
             <label>Confirme a sua senha:</label>
-            <input type="password" class="form-control" />
+            <input type="password" class="form-control" formControlName="senhaConfirmacao" />
+            <div class="text-danger" *ngIf="f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid">
+              <div *ngIf="f['senhaConfirmacao'].errors['required']">
+                Por favor, confirme a senha.
+              </div>
+              <div *ngIf="f['senhaConfirmacao'].errors['matchPassword']">
+                Senhas não conferem, por favor verifique.
+              </div>
+            </div>
           </div>
 
           <div class="mb-3 d-grid">
-            <button class="btn btn-primary btn-sm">
+            <button class="btn btn-primary btn-sm" [disabled]="form.invalid">
               Realizar cadastro
             </button>
           </div>
         </form>
-        
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { CriarUsuarioComponent } from './components/pages/criar-usuario/criar-usuario.component';
+import { ConsultaProdutosComponent } from './components/pages/consulta-produtos/consulta-produtos.component';
 
 export const routes: Routes = [
   {
@@ -10,6 +11,10 @@ export const routes: Routes = [
   {
     path: "app/criar-usuario", /* rota da página de criar usuário */
     component: CriarUsuarioComponent
+  },
+  {
+    path: "app/consulta-produtos", /* rota da página de consulta-produtos */
+    component: ConsultaProdutosComponent
   },
   {
     path: "", /* rota raiz do projeto (default) */
