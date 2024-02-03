@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Projeto Web Angular</a>
+    <a class="navbar-brand" href="#"><strong>Projeto Web Angular</strong></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -8,21 +8,51 @@
       data-bs-target="#navbarNav"
       aria-controls="navbarNav"
       aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+
+    <!-- conteúdo exibido se o usuário não estiver autenticado -->
+    <div
+      *ngIf="!usuarioAutenticado"
+      class="collapse navbar-collapse"
+      id="navbarNav"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/app/login">
-            Autenticar Usuário
-          </a>
+          <a class="nav-link" routerLink="/app/login"> Autenticar Usuário </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/app/criar-usuario">
             Criar Conta de Usuário
           </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- conteúdo exibido se usuário estiver autenticado -->
+    <div
+      *ngIf="usuarioAutenticado"
+      class="collapse navbar-collapse"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/app/consulta-produtos">
+            Consultar Produtos
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link text-white">
+            <strong>{{ usuarioNome }}</strong> | {{ usuarioEmail }}
+          </span>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-sm btn-outline-light mt-1 ms-3"
+            (click)="logout()">
+            Sair do Sistema
+          </button>
         </li>
       </ul>
     </div>

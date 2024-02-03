@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { CriarUsuarioComponent } from './components/pages/criar-usuario/criar-usuario.component';
 import { ConsultaProdutosComponent } from './components/pages/consulta-produtos/consulta-produtos.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,7 +15,8 @@ export const routes: Routes = [
   },
   {
     path: "app/consulta-produtos", /* rota da página de consulta-produtos */
-    component: ConsultaProdutosComponent
+    component: ConsultaProdutosComponent,
+    canActivate: [AuthGuard] /* protegendo o acesso a página */
   },
   {
     path: "", /* rota raiz do projeto (default) */
