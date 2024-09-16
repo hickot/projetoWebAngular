@@ -1,8 +1,10 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, NgModule } from '@angular/core';
+import { provideRouter, RouterModule } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+
+export class AppModule { }
 
 export const appConfig: ApplicationConfig = {
   providers: [
